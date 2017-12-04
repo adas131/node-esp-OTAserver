@@ -1,0 +1,36 @@
+{
+  "name": "node-esp-ota-server",
+  "version": "1.0.0",
+  "description": "OTA bin server for ESP8266httpUpdate clients",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcbleeker/node-esp-OTAserver.git"
+  },
+  "keywords": [
+    "esp8266",
+    "esp32",
+    "ota"
+  ],
+  "author": "kcbleeker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcbleeker/node-esp-OTAserver/issues"
+  },
+  "homepage": "https://github.com/kcbleeker/node-esp-OTAserver#readme",
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "promise": "^8.0.1",
+    "serve-favicon": "~2.4.5"
+  }
+}
