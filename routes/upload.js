@@ -43,8 +43,8 @@ router.post('/upload', function (req, res, next) {
   }
 
   // The name of the input field (i.e. "sketch") is used to retrieve the uploaded file
-  let sketch = req.files.sketch;
-  let sketchMD5 = md5(sketch.data);
+  var sketch = req.files.sketch;
+  var sketchMD5 = md5(sketch.data);
   getVersionFromDb(sketchMD5)
     .then((result) => {
       return res.status(500).send('Duplicate sketch detected.');
