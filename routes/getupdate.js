@@ -5,6 +5,7 @@ var Promise = require('promise');
 
 var connection;
 router["setConnection"] = (appConnection) => {
+  console.log("getupdate:setconnection");
   connection = appConnection;
 };
 
@@ -111,7 +112,7 @@ function notFound(next) {
 }
 
 function handleRequest(req, res, next) {
-  if (connection.state === "connected") {
+  if (connection.state !== "disconnected" && connection.state !== "protocol_error") {
     var current_md5 = req.headers["x-esp8266-sketch-md5"];
     var chipid = req.params["chip_id"];
     var checkChipInDbResult = checkChipInDb(current_md5, chipid)

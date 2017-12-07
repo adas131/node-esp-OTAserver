@@ -13,9 +13,9 @@ var fileUpload = require('express-fileupload');
 var settings = require("./settings");
 var app = express();
 
-settings.setApp(app);
-getupdate.setConnection(app["dbConn"]);
-upload.setConnection(app["dbConn"]);
+var dbConn = settings.setup(app);
+getupdate.setConnection(dbConn);
+upload.setConnection(dbConn);
 
 
 // view engine setup

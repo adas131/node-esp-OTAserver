@@ -6,12 +6,13 @@ var mysql = require('mysql');
 
 var connection;
 router["setConnection"] = (appConnection) => {
+  console.log("upload:setconnection");
   connection = appConnection;
 };
 
 function getVersionFromDb(md5) {
   console.log("getVersionFromDb", md5);
-  if (connection.state !== "connected") {
+  if (connection.state === "disconnected" || connection.state === "protocol_error") {
     throw new Error('Database error.');
     return;
   }
@@ -38,7 +39,8 @@ router.post('/upload', function (req, res, next) {
     return res.status(400).send('No files were uploaded.');
   }
 
-  if (connection.state !== "connected") {
+  if (connection.state === "disconnected" || connection.state === "protocol_error") {
+    console.log(connection.state);
     return res.status(500).send('Database error.');
   }
 
