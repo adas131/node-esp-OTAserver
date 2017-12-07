@@ -7,14 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('updater:server');
 var http = require('http');
-var fs = require('fs');
-
-
-/**
- * Deploy yourself!
- */
-
-fs.copyFile("../otaserver.conf", "/etc/init/otaserver.conf", () => { });
 
 /**
  * Get port from environment and store in Express.
