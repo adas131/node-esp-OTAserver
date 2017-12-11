@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var upload = require('./routes/upload');
 var getupdate = require('./routes/getupdate');
+var getchiptypes = require('./routes/getchiptypes');
 var fileUpload = require('express-fileupload');
 
 var settings = require("./settings");
@@ -15,6 +16,7 @@ var app = express();
 
 var dbConn = settings.setup(app);
 getupdate.setConnection(dbConn);
+getchiptypes.setConnection(dbConn);
 upload.setConnection(dbConn);
 
 
@@ -34,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
 app.use('/', index);
+app.get('/getchiptypes/', getchiptypes);
 app.get('/getupdate/:chip_id/:filename.:ext', getupdate);
 app.get('/upload', upload);
 app.post('/upload', upload);

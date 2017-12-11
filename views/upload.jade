@@ -2,8 +2,8 @@ extends layout
 
 block content
   .container-fluid
-    h1= title
-    .well
+    br
+    .container.card
       form(action="/upload" method="POST")
         .form-group
           label(for="firmwaredesc")|Firmware description:
