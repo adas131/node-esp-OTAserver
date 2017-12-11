@@ -32,9 +32,47 @@ function getVersionFromDb(md5) {
     });
   });
 }
+function getChipTypesFromDb() {
+  return new Promise((resolve, reject) => {
+    connection.query('SELECT * FROM chiptypes', function (error, results, fields) {
+      if (error) {
+        console.log("Query error");
+        reject('Not Found');
+      }
+      else {
+        if (results.length > 0) {
+          var tmp = [];
+          results.forEach((item) => {
+            tmp.push({
+              id: item.id_chiptypes,
+              description: item.description
+            });
+          })
+          resolve(tmp);
+        }
+        else {
+          console.log("None found");
+          reject('Not Found');
+        }
+      }
+    });
+  });
+}
 
 router.get('/upload', function (req, res, next) {
-  res.render('upload', { title: 'Upload' });
+  if (connection.state !== "disconnected" && connection.state !== "protocol_error") {
+    getChipTypesFromDb()
+      .then((results) => {
+        res.render('upload', { title: 'Upload', chiptypes: results });
+      },
+      () => {
+        notFound(next);
+      }
+      )
+  }
+  else {
+    notFound(next);
+  }
 })
 
 router.post('/upload', function (req, res, next) {

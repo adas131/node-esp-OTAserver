@@ -19,7 +19,10 @@ block content
             | you'll have some real problems!
           br
           label(for="chiptype")|ESP Chip Type:
-          input.form-control(type="number" id="firmwaredesc" name="chiptype" maxlength="100" value="1" min="1" required)
-          small.form-text.text-muted|Choose a chip type (1 for all)
+          //- input(type="number" id="firmwaredesc" name="chiptype" maxlength="100" value="1" min="1" required)
+          select.form-control
+            each i in chiptypes
+              option(value=i.id) #{i.description}
+          small.form-text.text-muted|Choose a chip type
           br
           button.btn.btn-primary(type="submit")|Upload!
