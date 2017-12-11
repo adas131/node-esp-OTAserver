@@ -18,7 +18,14 @@ function getChipTypesFromDb() {
       }
       else {
         if (results.length > 0) {
-          resolve(results);
+          var tmp = {};
+          results.forEach((item) => {
+            tmp.push({
+              id: item.id_chiptypes,
+              description: item.description
+            });
+          })
+          resolve(tmp);
         }
         else {
           console.log("None found");
