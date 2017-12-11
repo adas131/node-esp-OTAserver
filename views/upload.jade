@@ -3,4 +3,23 @@ extends layout
 block content
   .container-fluid
     h1= title
-    p Welcome to #{title}
+    .well
+      form(action="/upload" method="POST")
+        .form-group
+          label(for="firmwaredesc")|Firmware description:
+          input.form-control(type="text" id="firmwaredesc" name="firmwaredesc" placeholder="Tappy tap tap" maxlength="500" required)
+          small.form-text.text-muted|Describe your firmware in 500 characters or less.
+          br
+          .input-group
+            .input-group-addon|Select file
+            input.form-control(type="file" id="sketch" name="sketch" required)
+          small.form-text.text-muted
+            | Remember, if this file doesn't properly implement 
+            a(href="/sample-chip-code/ota-base.ino")|OTA Base 
+            | you'll have some real problems!
+          br
+          label(for="chiptype")|ESP Chip Type:
+          input.form-control(type="number" id="firmwaredesc" name="chiptype" maxlength="100" value="1" min="1" required)
+          small.form-text.text-muted|Choose a chip type (1 for all)
+          br
+          button.btn.btn-primary(type="submit")|Upload!

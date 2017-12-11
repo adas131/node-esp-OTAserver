@@ -54,9 +54,9 @@ router.post('/upload', function (req, res, next) {
     .then((result) => {
       return res.status(500).send('Duplicate sketch detected.');
     }, () => {
-      var qry1 = connection.query('INSERT INTO firmwareversions(md5, data) values (?, ?)', [sketchMD5, sketch.data], function (error, results, fields) {
+      var qry1 = connection.query('INSERT INTO firmwareversions(md5, data, chiptype) values (?, ?, ?)', [sketchMD5, sketch.data, req.chiptype], function (error, results, fields) {
         if (!error) {
-          return res.status(200).send('Sketch uploaded.');
+          return res.status(200).send(sketchMD5);
         }
         else {
           console.log(error);
