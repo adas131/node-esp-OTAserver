@@ -33,7 +33,10 @@ function getVersionFromDb(md5) {
   });
 }
 
-/* POST new firmware. */
+router.get('/upload', function (req, res, next) {
+  res.render('upload', { title: 'Upload' });
+})
+
 router.post('/upload', function (req, res, next) {
   if (!req.files) {
     return res.status(400).send('No files were uploaded.');
