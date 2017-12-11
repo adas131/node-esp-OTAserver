@@ -9,7 +9,7 @@ router["setConnection"] = (appConnection) => {
   connection = appConnection;
 };
 
-function getChipTypesFromDb(current_md5, chipid) {
+function getChipTypesFromDb() {
   return new Promise((resolve, reject) => {
     connection.query('SELECT * FROM chiptypes', function (error, results, fields) {
       if (error) {
@@ -38,7 +38,7 @@ function notFound(next) {
 
 function handleRequest(req, res, next) {
   if (connection.state !== "disconnected" && connection.state !== "protocol_error") {
-    getChipTypesFromDb(current_md5, chipid)
+    getChipTypesFromDb()
       .then((results) => {
         res.status(200).send(JSON.stringify(results, null, 4));
       },
