@@ -18,7 +18,7 @@ function getChipTypesFromDb() {
       }
       else {
         if (results.length > 0) {
-          var tmp = {};
+          var tmp = [];
           results.forEach((item) => {
             tmp.push({
               id: item.id_chiptypes,
