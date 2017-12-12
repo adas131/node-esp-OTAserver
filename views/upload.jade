@@ -19,7 +19,6 @@ block content
             | you'll have some real problems!
           br
           label(for="chiptype")|ESP Chip Type:
-          //- input(type="number" id="firmwaredesc" name="chiptype" maxlength="100" value="1" min="1" required)
           select.form-control
             each i in chiptypes
               option(value=i.id) #{i.description}

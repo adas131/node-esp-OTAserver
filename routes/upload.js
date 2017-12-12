@@ -32,6 +32,7 @@ function getVersionFromDb(md5) {
     });
   });
 }
+
 function getChipTypesFromDb() {
   return new Promise((resolve, reject) => {
     connection.query('SELECT * FROM chiptypes', function (error, results, fields) {
