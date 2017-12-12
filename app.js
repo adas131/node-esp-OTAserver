@@ -15,6 +15,9 @@ var settings = require("./settings");
 var app = express();
 
 var dbConn = settings.setup(app);
+if (settings.hostName) {
+  app["hostName"] = settings.hostName;
+}
 getupdate.setConnection(dbConn);
 getchiptypes.setConnection(dbConn);
 upload.setConnection(dbConn);
