@@ -5,7 +5,7 @@ var Promise = require('promise');
 
 var connection;
 router["setConnection"] = (appConnection) => {
-  console.log("getupdate:setconnection");
+  console.log("getchiptypes:setconnection");
   connection = appConnection;
 };
 

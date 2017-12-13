@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var upload = require('./routes/upload');
 var getupdate = require('./routes/getupdate');
 var getchiptypes = require('./routes/getchiptypes');
+var chiptype = require('./routes/chiptype');
 var fileUpload = require('express-fileupload');
 
 var settings = require("./settings");
@@ -21,6 +22,7 @@ if (settings.hostName) {
 getupdate.setConnection(dbConn);
 getchiptypes.setConnection(dbConn);
 upload.setConnection(dbConn);
+chiptype.setConnection(dbConn);
 
 
 // view engine setup
@@ -43,6 +45,8 @@ app.get('/getchiptypes/', getchiptypes);
 app.get('/getupdate/:chip_id/:filename.:ext', getupdate);
 app.get('/upload', upload);
 app.post('/upload', upload);
+app.get('/chiptype', chiptype);
+app.post('/chiptype', chiptype);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
