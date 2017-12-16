@@ -89,9 +89,7 @@ router.post('/upload', function (req, res, next) {
   // The name of the input field (i.e. "sketch") is used to retrieve the uploaded file
   var sketch = req.files.sketch;
   var sketchMD5 = md5(sketch.data);
-  var chiptype = req.chiptype;
-  console.log(req.chiptype);
-  console.log(req);
+  var chiptype = req.body.chiptype;
   getVersionFromDb(sketchMD5)
     .then((result) => {
       return res.status(500).send('Duplicate sketch detected.');
@@ -101,7 +99,7 @@ router.post('/upload', function (req, res, next) {
           return res.status(200).send(sketchMD5);
         }
         else {
-          console.log("error");
+          return res.status(500).send('error');
         }
       });
     })
