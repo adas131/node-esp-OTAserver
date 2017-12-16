@@ -89,16 +89,19 @@ router.post('/upload', function (req, res, next) {
   // The name of the input field (i.e. "sketch") is used to retrieve the uploaded file
   var sketch = req.files.sketch;
   var sketchMD5 = md5(sketch.data);
+  var chiptype = req.chiptype;
+  console.log(req.chiptype);
+  console.log(req);
   getVersionFromDb(sketchMD5)
     .then((result) => {
       return res.status(500).send('Duplicate sketch detected.');
     }, () => {
-      var qry1 = connection.query('INSERT INTO firmwareversions(md5, data, chiptype) values (?, ?, ?)', [sketchMD5, sketch.data, req.chiptype], function (error, results, fields) {
+      var qry1 = connection.query('INSERT INTO firmwareversions(md5, data, chiptype) values (?, ?, ?)', [sketchMD5, sketch.data, chiptype], function (error, results, fields) {
         if (!error) {
           return res.status(200).send(sketchMD5);
         }
         else {
-          console.log(error);
+          console.log("error");
         }
       });
     })
