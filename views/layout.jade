@@ -11,10 +11,14 @@ html
     nav.navbar.navbar-dark.bg-dark.justify-content-start
       a.navbar-brand(href="#")
         img(src="/images/esp.png" width="30" height="30" class="d-inline-block align-top" alt="")
-        | Bootstrap
+        | ESP OTA Server
       //- .navbar-nav
-      a.nav-item.nav-link(href="/")|Home
-      a.nav-item.nav-link(href="/upload")|Upload
+      a.nav-item.nav-link(href="/")
+        i.fa.fa-home| 
+          span| Home
+      a.nav-item.nav-link(href="/upload")
+        i.fa.fa-arrow-up| 
+          span| Upload
     block content
     script(src="https://use.fontawesome.com/fe2db5111d.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous")

@@ -9,20 +9,27 @@ block content
           tr
             th|ChipID
             th|Description
-            th
+            th|Controls
         tbody
           each i in chiptypes
             tr
               td #{i.id}
               td #{i.description}
               td
-                a.btn.btn-primary(href="/chiptypes/edit/#{i.id}")
-                  i.fa.fa-pencil-square-o|Edit
-                a.btn.btn-danger(href="/chiptypes/delete/#{i.id}")
-                  i.fa.fa-trash-o|Delete
+                .btn-group(role="group")
+                  a.btn.btn-primary(href="/chiptypes/edit/#{i.id}")
+                    i.fa.fa-pencil-square-o| 
+                      span| Edit
+                  a.btn.btn-danger(href="/chiptypes/delete/#{i.id}")
+                    i.fa.fa-trash-o| 
+                      span| Delete
       br
-      a.btn.btn-success(href="/chiptypes/add")
-        i.fa.fa-plus-square-o|Add
+      .row
+        .col-sm
+          a.btn.btn-success.btn-sm(href="/chiptypes/add" role="button")
+            i.fa.fa-plus-square-o| 
+              span| New
+      br
   script(src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js")
   script(src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.0/b-html5-1.5.0/b-print-1.5.0/fh-3.1.3/sl-1.2.4/datatables.min.js")
