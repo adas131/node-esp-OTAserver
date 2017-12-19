@@ -16,12 +16,12 @@ block content
               td #{i.id}
               td #{i.description}
               td
-                a(href="/chiptypes/edit/#{i.id}")
+                a.btn.btn-primary(href="/chiptypes/edit/#{i.id}")
                   i.fa.fa-pencil-square-o|Edit
-                a(href="/chiptypes/delete/#{i.id}")
+                a.btn.btn-danger(href="/chiptypes/delete/#{i.id}")
                   i.fa.fa-trash-o|Delete
       br
-      a(href="/chiptypes/add")
+      a.btn.btn-success(href="/chiptypes/add")
         i.fa.fa-plus-square-o|Add
   script(src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js")
