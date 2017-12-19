@@ -4,7 +4,7 @@ block content
   .container-fluid
     br
     .container.card
-      form(action="/upload" method="POST")
+      form(action="/upload" method="POST" enctype="multipart/form-data")
         .form-group
           label(for="firmwaredesc")|Firmware description:
           input.form-control(type="text" id="firmwaredesc" name="firmwaredesc" placeholder="Tappy tap tap" maxlength="500" required)
