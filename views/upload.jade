@@ -21,7 +21,7 @@ block content
           label(for="chiptype")|ESP Chip Type:
           select.form-control
             each i in chiptypes
-              option(value=i.id) #{i.description}
+              option(name="chiptype" value=i.id) #{i.description}
           small.form-text.text-muted|Choose a chip type
           br
           button.btn.btn-primary(type="submit")|Upload!
