@@ -16,9 +16,21 @@ html
       a.nav-item.nav-link(href="/")
         i.fa.fa-home| 
           span| Home
-      a.nav-item.nav-link(href="/upload")
-        i.fa.fa-arrow-up| 
-          span| Upload
+      .nav-item.dropdown
+        a.dropdown-toggle.nav-link#firmwareDropdown(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")|Firmware
+        .dropdown-menu(aria-labelledby="firmwareDropdown")
+          a.nav-item.nav-link(href="/firmware/upload")
+            i.fa.fa-arrow-up| 
+              span| Upload
+          a.nav-item.nav-link(href="/firmware/edit")
+            i.fa.fa-arrow-up| 
+              span| Edit
+      .nav-item.dropdown
+        a.dropdown-toggle.nav-link#chiptypeDropdown(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")|Chip Types
+        .dropdown-menu(aria-labelledby="chiptypeDropdown")
+          a.nav-item.nav-link(href="/chiptype/")
+            i.fa.fa-arrow-up| 
+              span| View
     block content
     script(src="https://use.fontawesome.com/fe2db5111d.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous")

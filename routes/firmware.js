@@ -60,11 +60,11 @@ function getChipTypesFromDb() {
   });
 }
 
-router.get('/upload', function (req, res, next) {
+router.get('/firmware/upload', function (req, res, next) {
   if (connection.state !== "disconnected" && connection.state !== "protocol_error") {
     getChipTypesFromDb()
       .then((results) => {
-        res.render('upload', { title: 'Upload', chiptypes: results });
+        res.render('firmwareUpload', { title: 'Firmware Upload', chiptypes: results });
       },
       () => {
         notFound(next);
@@ -76,7 +76,7 @@ router.get('/upload', function (req, res, next) {
   }
 })
 
-router.post('/upload', function (req, res, next) {
+router.post('/firmware/upload', function (req, res, next) {
   if (!req.files) {
     return res.status(400).send('No files were uploaded.');
   }

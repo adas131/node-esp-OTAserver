@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var upload = require('./routes/upload');
+var firmware = require('./routes/firmware');
 var getupdate = require('./routes/getupdate');
 var getchiptypes = require('./routes/getchiptypes');
 var chiptype = require('./routes/chiptype');
@@ -21,7 +21,7 @@ if (settings.hostName) {
 }
 getupdate.setConnection(dbConn);
 getchiptypes.setConnection(dbConn);
-upload.setConnection(dbConn);
+firmware.setConnection(dbConn);
 chiptype.setConnection(dbConn);
 
 
@@ -43,8 +43,8 @@ app.use(fileUpload());
 app.use('/', index);
 app.get('/getchiptypes/', getchiptypes);
 app.get('/getupdate/:chip_id/:filename.:ext', getupdate);
-app.get('/upload', upload);
-app.post('/upload', upload);
+app.get('/firmware/upload', firmware);
+app.post('/firmware/upload', firmware);
 app.get('/chiptype', chiptype);
 app.post('/chiptype', chiptype);
 
