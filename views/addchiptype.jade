@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .container-fluid
+    br
+    .container.card
+        form(action="/upload" method="POST" enctype="multipart/form-data")
+            .form-group
+                label(for="chiptypedesc")|Chip type description:
+                input.form-control(type="text" id="chiptypedesc" name="description" placeholder="Magical IoT device description" maxlength="200" required)
+                small.form-text.text-muted
+                    |What does the device do? Please check 
+                    a(href="/chiptype")|existing chiptypes 
+                    | to ensure this type doesn't already exist.
+                button.btn.btn-primary(type="submit")|Upload!

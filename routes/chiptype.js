@@ -76,6 +76,10 @@ router.get('/chiptype/edit/:chipid/', function (req, res, next) {
 //     return res.status(500).send('Database error.');
 //   }
 
+router.get('/chiptype/add/', function (req, res, next) {
+  res.render('addchiptype', { title: 'Add Chip Type' });
+});
+
 //   // The name of the input field (i.e. "sketch") is used to retrieve the uploaded file
 //   var sketch = req.files.sketch;
 //   var sketchMD5 = md5(sketch.data);

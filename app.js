@@ -6,47 +6,38 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var firmware = require('./routes/firmware');
-var getupdate = require('./routes/getupdate');
-var getchiptypes = require('./routes/getchiptypes');
-var chiptype = require('./routes/chiptype');
 var fileUpload = require('express-fileupload');
 
-var settings = require("./settings");
 var app = express();
 
-var dbConn = settings.setup(app);
+// Load settings
+var settings = require("./settings");
 if (settings.hostName) {
   app["hostName"] = settings.hostName;
 }
-getupdate.setConnection(dbConn);
-getchiptypes.setConnection(dbConn);
-firmware.setConnection(dbConn);
-chiptype.setConnection(dbConn);
 
+// Setup DB connection
+var dbConn = settings.setup(app);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  limit: '5mb',
-  extended: true,
-  parameterLimit: 1000000
-}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(fileUpload());
+generalSetup(app);
 
 app.use('/', index);
+
+var firmware = require('./routes/firmware');
+firmware.setConnection(dbConn);
+routePath('/firmware', firmware);
+
+var getchiptypes = require('./routes/getchiptypes');
+getchiptypes.setConnection(dbConn);
 app.get('/getchiptypes/', getchiptypes);
+
+var getupdate = require('./routes/getupdate');
+getupdate.setConnection(dbConn);
 app.get('/getupdate/:chip_id/:filename.:ext', getupdate);
-app.get('/firmware/upload', firmware);
-app.post('/firmware/upload', firmware);
-app.get('/chiptype', chiptype);
-app.post('/chiptype', chiptype);
+
+var chiptype = require('./routes/chiptype');
+chiptype.setConnection(dbConn);
+routePath('/chiptype', chiptype);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -65,5 +56,30 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+function routePath(path, nodule) {
+  app.get(path, nodule);
+  app.post(path, nodule);
+  app.get(path + "*", nodule);
+  app.post(path + "*", nodule);
+}
+
+function generalSetup(appToUse) {
+  // view engine setup
+  appToUse.set('views', path.join(__dirname, 'views'));
+  appToUse.set('view engine', 'jade');
+
+  appToUse.use(logger('dev'));
+  appToUse.use(bodyParser.json());
+  appToUse.use(bodyParser.urlencoded({
+    limit: '5mb',
+    extended: true,
+    parameterLimit: 1000000
+  }));
+  appToUse.use(cookieParser());
+  appToUse.use(express.static(path.join(__dirname, 'public')));
+  appToUse.use(fileUpload());
+
+}
 
 module.exports = app;
