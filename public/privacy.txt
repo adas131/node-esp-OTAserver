@@ -1,0 +1,13 @@
+1. What information do you collect?
+    Your Google identity key is stored to uniquely identify you and painlessly login, along with a token unique to your login into this site. 
+    This token cannot be used to log you in on other sites.
+
+2. How do you use the information?
+    Your identity key is used to keep your chip information, uploaded firmware, and chip firmware assignments unique and available only to you.
+
+3. What information do you share?
+    The only time a record of your accounts existence on this site will be used is during analytics - counting number of users, number of active users, avg number of chips/firmware uploads per user. 
+    Again, nothing that makes your identity discernible will be used in this process.
+
+4. How securely is this data stored?
+    That depends on the owner of the site - you should only post data to this server that you're willing to have become public domain in the case of a breach.

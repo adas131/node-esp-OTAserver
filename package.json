@@ -28,6 +28,7 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-fileupload": "^0.3.0",
+    "googleapis": "^23.0.0",
     "jade": "~1.11.0",
     "md5": "^2.2.1",
     "morgan": "~1.9.0",
